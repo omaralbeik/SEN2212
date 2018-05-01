@@ -1,33 +1,29 @@
+import java.text.MessageFormat;
+
 /**
  * Word is a custom object for holding a sub-string value and its start and end indices in a string.
  */
 public class Word implements Comparable<Word> {
 
     private String value;
-    private int startIndex;
-    private int endIndex;
+    private long startIndex;
 
     public String getValue() {
         return value;
     }
 
-    public int getStartIndex() {
+    public long getStartIndex() {
         return startIndex;
     }
 
-    public int getEndIndex() {
-        return endIndex;
-    }
-
-    public Word(String value, int startIndex, int endIndex) {
+    public Word(String value, long startIndex) {
         this.value = value;
         this.startIndex = startIndex;
-        this.endIndex = endIndex;
     }
 
     @Override
     public String toString() {
-        return value + " " + "[" + startIndex + ":" + endIndex + "]";
+        return MessageFormat.format("{0} [{1}:{2}]", value, String.valueOf(startIndex), value.length());
     }
 
     @Override

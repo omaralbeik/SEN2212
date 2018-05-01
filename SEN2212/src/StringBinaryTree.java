@@ -9,38 +9,36 @@ public class StringBinaryTree extends BinarySearchTree<Word> {
 
     public void insertStringFromFile(String fileName) throws Exception {
         String contents = readFile(fileName);
-        if (contents != null) {
-            insertString(contents);
-        }
+        insertString(contents);
     }
 
     public void insertString(String s) {
-        String currentWord = "";
+        StringBuilder sb = new StringBuilder();
         int currentStartIndex = -1;
 
         for (int i = 0; i < s.length(); i++) {
-            if (!isAllowedChar(s.charAt(i))) {
-
-                if (!currentWord.isEmpty()) {
-                    Word word = new Word(currentWord, currentStartIndex, i - 1);
+            char c = s.charAt(i);
+            if (!isAllowedChar(c)) {
+                if (sb.length() > 0) {
+                    Word word = new Word(sb.toString(), currentStartIndex);
                     insert(word);
-                    currentWord = "";
+                    sb.setLength(0);
                 }
                 continue;
             } else {
-                if (currentWord.isEmpty()) {
+                if (sb.length() == 0) {
                     currentStartIndex = i;
                 }
             }
 
-            currentWord += s.charAt(i);
+            sb.append(c);
         }
     }
 
     public LinkedList<Word> search(String query) {
         Node<Word> current = getRoot();
 
-        LinkedList<Word> results = new LinkedList();
+        LinkedList<Word> results = new LinkedList<>();
 
         while (current != null) {
             Word currentObject = current.getObject();
@@ -69,17 +67,17 @@ public class StringBinaryTree extends BinarySearchTree<Word> {
      * @return string contents of provided file.
      */
     private static String readFile(String fileName) throws Exception {
-        String contents = "";
 
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        StringBuilder sb = new StringBuilder();
 
         String line;
         while ((line = reader.readLine()) != null) {
-            contents += line;
+            sb.append(line);
         }
         reader.close();
 
-        return contents;
+        return sb.toString();
     }
 
 }

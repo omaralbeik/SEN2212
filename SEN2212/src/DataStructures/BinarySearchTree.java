@@ -17,19 +17,15 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return size;
     }
 
-    public int getDepth() {
-        return getMaxDepth(root);
-    }
-
-    public Node getRoot() {
+    protected Node<T> getRoot() {
         return root;
     }
 
     private Node<T> createNewNode(T o) {
-        return new Node(o);
+        return new Node<>(o);
     }
 
-    public void insert(T o) {
+    protected void insert(T o) {
         if (root == null)
             root = createNewNode(o);
         else {
@@ -53,47 +49,31 @@ public class BinarySearchTree<T extends Comparable<T>> {
         size++;
     }
 
-    public void inorder(Node root) {
+    public void inOrder(Node root) {
         if (root == null)
             return;
 
-        inorder(root.getLeft());
+        inOrder(root.getLeft());
         System.out.println(root.getObject() + " ");
-        inorder(root.getRight());
+        inOrder(root.getRight());
     }
 
-    public void postorder(Node root) {
+    public void postOrder(Node root) {
         if (root == null)
             return;
 
-        postorder(root.getLeft());
-        postorder(root.getRight());
+        postOrder(root.getLeft());
+        postOrder(root.getRight());
         System.out.println(root.getObject() + " ");
     }
 
-    public void preorder(Node root) {
+    public void preOrder(Node root) {
         if (root == null)
             return;
 
         System.out.println(root.getObject() + " ");
-        preorder(root.getLeft());
-        preorder(root.getRight());
-    }
-
-
-    private int getMaxDepth(Node<T> node) {
-        if (node == null) {
-            return 0;
-
-        } else {
-            int leftDepth = getMaxDepth(node.getLeft());
-            int rightDepth = getMaxDepth(node.getRight());
-
-            if (leftDepth > rightDepth)
-                return (leftDepth + 1);
-            else
-                return (rightDepth + 1);
-        }
+        preOrder(root.getLeft());
+        preOrder(root.getRight());
     }
 
 }

@@ -1,12 +1,14 @@
 package DataStructures;
 
+import java.text.MessageFormat;
+
 /**
  * Generic linked list data structure.
  */
 public class LinkedList<T extends Comparable<T>> {
 
-    Node<T> head;
-    Node<T> tail;
+    private Node<T> head;
+    private Node<T> tail;
 
     public LinkedList() {
         head = tail = null;
@@ -37,9 +39,9 @@ public class LinkedList<T extends Comparable<T>> {
 
     public void append(T o) {
         if (isEmpty())
-            head = tail = new Node<T>(o);
+            head = tail = new Node<>(o);
         else {
-            Node node = new Node<T>(o, tail, null);
+            Node<T> node = new Node<>(o, tail, null);
             tail.setRight(node);
             tail = node;
         }
@@ -50,15 +52,18 @@ public class LinkedList<T extends Comparable<T>> {
         if (isEmpty())
             return "[]";
 
-        String output = "[\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[\n");
 
-        Node current = head;
+        Node<T> current = head;
 
         while (current != null) {
-            output += "  " + current.getObject() + "\n";
+            sb.append(MessageFormat.format("    {0}\n", current.getObject()));
             current = current.getRight();
         }
 
-        return output + "]";
+        sb.append("]");
+
+        return sb.toString();
     }
 }
