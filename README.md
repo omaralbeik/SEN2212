@@ -1,2 +1,2 @@
-# BinarySearchTree
-Search strings in a text file using linked list and binary search tree
+# SEN2211 Lab Project
+Utilize binary search trees and linked-lists to search efficiently for strings in large text files.
