@@ -77,7 +77,7 @@ public class Main {
 
         LinkedList results = tree.search(input);
 
-        System.out.println(MessageFormat.format("Found {0} results for \"{1}\"", results.size(), input));
+        System.out.println(MessageFormat.format("Found {0} results for \"{1}\"", results.getSize(), input));
         askToShowResults(results);
     }
     private static void askToShowResults(LinkedList results) {

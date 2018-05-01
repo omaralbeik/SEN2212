@@ -20,8 +20,7 @@ public class StringBinaryTree extends BinarySearchTree<Word> {
             char c = s.charAt(i);
             if (!isAllowedChar(c)) {
                 if (sb.length() > 0) {
-                    Word word = new Word(sb.toString(), currentStartIndex);
-                    insert(word);
+                    insert(new Word(sb.toString(), currentStartIndex));
                     sb.setLength(0);
                 }
                 continue;

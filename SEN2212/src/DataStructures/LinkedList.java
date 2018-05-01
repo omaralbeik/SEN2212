@@ -9,6 +9,7 @@ public class LinkedList<T extends Comparable<T>> {
 
     private Node<T> head;
     private Node<T> tail;
+    private int size;
 
     public LinkedList() {
         head = tail = null;
@@ -26,15 +27,8 @@ public class LinkedList<T extends Comparable<T>> {
         return head == null;
     }
 
-    public int size() {
-        int count = 0;
-        Node current = head;
-
-        while (current != null) {
-            count++;
-            current = current.getRight();
-        }
-        return count;
+    public int getSize() {
+        return size;
     }
 
     public void append(T o) {
@@ -45,6 +39,7 @@ public class LinkedList<T extends Comparable<T>> {
             tail.setRight(node);
             tail = node;
         }
+        size++;
     }
 
     @Override
