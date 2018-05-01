@@ -17,6 +17,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return size;
     }
 
+    public int getDepth() {
+        return getMaxDepth(root);
+    }
+
     public Node getRoot() {
         return root;
     }
@@ -74,6 +78,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println(root.getObject() + " ");
         preorder(root.getLeft());
         preorder(root.getRight());
+    }
+
+
+    private int getMaxDepth(Node<T> node) {
+        if (node == null) {
+            return 0;
+
+        } else {
+            int leftDepth = getMaxDepth(node.getLeft());
+            int rightDepth = getMaxDepth(node.getRight());
+
+            if (leftDepth > rightDepth)
+                return (leftDepth + 1);
+            else
+                return (rightDepth + 1);
+        }
     }
 
 }
