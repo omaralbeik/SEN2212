@@ -1,14 +1,16 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import DataStructures.LinkedList;
 
 public class Main {
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
 
-        String loremIpsum = readFile("loremIpsum.txt");
+        StringBinaryTree tree = new StringBinaryTree();
 
-        BinarySearchTree tree = new BinarySearchTree();
-        tree.insertString(loremIpsum);
+        try {
+            tree.insertStringFromFile("loremIpsum.txt");
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
 
         tree.inorder(tree.getRoot());
 
@@ -18,28 +20,5 @@ public class Main {
         System.out.println(results);
     }
 
-    /**
-     * Read text file.
-     * @param fileName file name.
-     * @return string contents of provided file.
-     */
-    private static String readFile(String fileName) {
-        String contents = "";
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                contents += line;
-            }
-            reader.close();
-
-        } catch (Exception e) {
-            System.out.println("Unable to read text file");
-        }
-
-        return contents;
-    }
-
 }
+

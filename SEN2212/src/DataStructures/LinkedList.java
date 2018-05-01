@@ -1,13 +1,23 @@
+package DataStructures;
+
 /**
  * Generic linked list data structure.
  */
-public class LinkedList {
+public class LinkedList<T extends Comparable<T>> {
 
-    Node head;
-    Node tail;
+    Node<T> head;
+    Node<T> tail;
 
     public LinkedList() {
         head = tail = null;
+    }
+
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public Node<T> getTail() {
+        return tail;
     }
 
     public boolean isEmpty() {
@@ -25,11 +35,11 @@ public class LinkedList {
         return count;
     }
 
-    public void append(Word word) {
+    public void append(T o) {
         if (isEmpty())
-            head = tail = new Node(word);
+            head = tail = new Node<T>(o);
         else {
-            Node node = new Node(word, tail, null);
+            Node node = new Node<T>(o, tail, null);
             tail.setRight(node);
             tail = node;
         }
@@ -45,7 +55,7 @@ public class LinkedList {
         Node current = head;
 
         while (current != null) {
-            output += "  " + current.getWord().toString() + "\n";
+            output += "  " + current.getObject() + "\n";
             current = current.getRight();
         }
 
